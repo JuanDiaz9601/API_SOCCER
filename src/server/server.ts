@@ -8,7 +8,7 @@ class Server {
     private app: express.Application;
     private port: number;
 
-    constructor(){
+    constructor() {
         this.app = express();
         this.port = Number(process.env.PORT);
         //Contectar DB
@@ -19,24 +19,26 @@ class Server {
         this.routes()
         //sin las () si ejecuto el metodo conexion funciona, pero el de middlewares no
     }
-    async conectionDB(){
+    async conectionDB() {
         await dbConnetion()
     }
 
-    middlewares(){
+    middlewares() {
         //Lectura y parseo del body
         this.app.use(express.json())
     }
 
-    routes(){
+    routes() {
         //no funciona como js this.path
         this.app.use("/", require("../routes/players.routes"))
         this.app.use("/", require("../routes/teams.routes"))
-        this.app.use("/", require("../routes/stadiums.routes"))  
+        this.app.use("/", require("../routes/stadiums.routes"))
+        this.app.use("/", require("../routes/users.routes"))
+        this.app.use("/", require("../routes/auth.routes"))
     }
 
-    listen(){
-        this.app.listen(this.port, ()=>{
+    listen() {
+        this.app.listen(this.port, () => {
             console.log(`Servidor corriendo en el puerto ${process.env.PORT}`)
         })
     }

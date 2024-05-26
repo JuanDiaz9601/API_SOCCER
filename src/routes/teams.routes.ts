@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import { check } from "express-validator"
 import { addPlayersToTeam, playersDelete, teamsDelete, teamsGet, teamsPost, teamsPut } from '../controllers/teams.controllers';
 import { validateDocumentTeams, validateIDTeams, validatefield } from '../middlewares/validar-campos';
-import { playerDelete } from '../controllers/players.controllers';
+
 
 
 const router = Router()
